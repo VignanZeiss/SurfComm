@@ -1,0 +1,565 @@
+﻿<UserControl
+    x:Class="SurfComm.Connect.Controls.IOStatusControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Border
+        Margin="0,0,0,10"
+        Padding="12"
+        Background="White"
+        BorderBrush="#D0D0D0"
+        BorderThickness="1"
+        CornerRadius="4">
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--  ====================== INPUTS TABLE ==========================  -->
+            <Border
+                Grid.Column="0"
+                BorderBrush="#A0A0A0"
+                BorderThickness="1"
+                CornerRadius="3">
+
+                <Grid Margin="0,0,9,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="28" />
+                        <!--  Header  -->
+                        <RowDefinition Height="28" />
+                        <!--  Start Measurement  -->
+                        <RowDefinition Height="28" />
+                        <!--  Error Reset  -->
+                        <RowDefinition Height="28" />
+                        <!--  Param1  -->
+                        <RowDefinition Height="28" />
+                        <!--  Param2  -->
+                        <RowDefinition Height="28" />
+                        <!--  Param3  -->
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <!--  INPUTS HEADER  -->
+                    <Border Grid.Row="0" Background="#404040">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                Margin="4,0"
+                                VerticalAlignment="Center"
+                                Foreground="White"
+                                Text="Inputs" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="White"
+                                Text="Status" />
+                        </Grid>
+                    </Border>
+
+                    <!--  ================= ROWS =================  -->
+
+                    <!--  Start Measurement  -->
+                    <Border
+                        Grid.Row="1"
+                        BorderBrush="#C0C0C0"
+                        BorderThickness="0,1,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Margin="4,0" Text="Start Measurement" />
+
+                            <Border
+                                Grid.Column="1"
+                                Background="{Binding StartMeasurementColor}"
+                                BorderBrush="#808080"
+                                BorderThickness="1">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="{Binding StartMeasurementTextColor}"
+                                    Text="{Binding StartMeasurementText}" />
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!--  Error Reset  -->
+                    <Border
+                        Grid.Row="2"
+                        BorderBrush="#C0C0C0"
+                        BorderThickness="0,1,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Margin="4,0" Text="Error Reset" />
+
+                            <Border
+                                Grid.Column="1"
+                                Background="{Binding ErrorResetColor}"
+                                BorderBrush="#808080"
+                                BorderThickness="1">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="{Binding ErrorResetTextColor}"
+                                    Text="{Binding ErrorResetText}" />
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!--  Parameter 1  -->
+                    <Border
+                        Grid.Row="3"
+                        BorderBrush="#C0C0C0"
+                        BorderThickness="0,1,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Margin="4,0" Text="Parameter 1 (in)" />
+
+                            <Border
+                                Grid.Column="1"
+                                Background="{Binding Param1InColor}"
+                                BorderBrush="#808080"
+                                BorderThickness="1">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="{Binding Param1InTextColor}"
+                                    Text="{Binding Param1InText}" />
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!--  Parameter 2  -->
+                    <Border
+                        Grid.Row="4"
+                        BorderBrush="#C0C0C0"
+                        BorderThickness="0,1,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Margin="4,0" Text="Parameter 2 (in)" />
+
+                            <Border
+                                Grid.Column="1"
+                                Background="{Binding Param2InColor}"
+                                BorderBrush="#808080"
+                                BorderThickness="1">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="{Binding Param2InTextColor}"
+                                    Text="{Binding Param2InText}" />
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!--  Parameter 3  -->
+                    <Border
+                        Grid.Row="5"
+                        BorderBrush="#C0C0C0"
+                        BorderThickness="0,1,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Margin="4,0" Text="Parameter 3 (in)" />
+
+                            <Border
+                                Grid.Column="1"
+                                Background="{Binding Param3InColor}"
+                                BorderBrush="#808080"
+                                BorderThickness="1">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="{Binding Param3InTextColor}"
+                                    Text="{Binding Param3InText}" />
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                </Grid>
+            </Border>
+
+            <!--  ====================== OUTPUTS TABLE ==========================  -->
+            <Border
+                Grid.Column="2"
+                BorderBrush="#A0A0A0"
+                BorderThickness="1"
+                CornerRadius="3">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="28" />
+                        <!--  Header  -->
+                        <RowDefinition Height="28" />
+                        <RowDefinition Height="28" />
+                        <RowDefinition Height="28" />
+                        <RowDefinition Height="28" />
+                        <RowDefinition Height="28" />
+                        <RowDefinition Height="28" />
+                        <RowDefinition Height="28" />
+                        <RowDefinition Height="28" />
+                        <RowDefinition Height="28" />
+                        <RowDefinition Height="28" />
+                        <RowDefinition Height="28" />
+                    </Grid.RowDefinitions>
+
+
+
+                    <!--  OUTPUTS HEADER  -->
+                    <Border Grid.Row="0" Background="#404040">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                Margin="4,0"
+                                VerticalAlignment="Center"
+                                Foreground="White"
+                                Text="Outputs" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="White"
+                                Text="Status" />
+                        </Grid>
+                    </Border>
+
+                    <!--  OUTPUT ROWS  -->
+
+                    <!--  Device Ready  -->
+                    <Border
+                        Grid.Row="1"
+                        BorderBrush="#C0C0C0"
+                        BorderThickness="0,1,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Margin="4,0" Text="Device Ready" />
+
+                            <Border
+                                Grid.Column="1"
+                                Background="{Binding DeviceReadyColor}"
+                                BorderBrush="#808080"
+                                BorderThickness="1">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="{Binding DeviceReadyTextColor}"
+                                    Text="{Binding DeviceReadyText}" />
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!--  Probe Connected  -->
+                    <Border
+                        Grid.Row="2"
+                        BorderBrush="#C0C0C0"
+                        BorderThickness="0,1,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Margin="4,0" Text="Probe Connected" />
+
+                            <Border
+                                Grid.Column="1"
+                                Background="{Binding ProbeConnectedColor}"
+                                BorderBrush="#808080"
+                                BorderThickness="1">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="{Binding ProbeConnectedTextColor}"
+                                    Text="{Binding ProbeConnectedText}" />
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!--  Automatic Mode  -->
+                    <Border
+                        Grid.Row="3"
+                        BorderBrush="#C0C0C0"
+                        BorderThickness="0,1,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Margin="4,0" Text="Automatic Mode" />
+
+                            <Border
+                                Grid.Column="1"
+                                Background="{Binding AutomaticModeColor}"
+                                BorderBrush="#808080"
+                                BorderThickness="1">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="{Binding AutomaticModeTextColor}"
+                                    Text="{Binding AutomaticModeText}" />
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!--  CMM Error  -->
+                    <Border
+                        Grid.Row="4"
+                        BorderBrush="#C0C0C0"
+                        BorderThickness="0,1,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Margin="4,0" Text="CMM Error" />
+
+                            <Border
+                                Grid.Column="1"
+                                Background="{Binding CmmErrorColor}"
+                                BorderBrush="#808080"
+                                BorderThickness="1">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="{Binding CmmErrorTextColor}"
+                                    Text="{Binding CmmErrorText}" />
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!--  Measurement Running  -->
+                    <Border
+                        Grid.Row="5"
+                        BorderBrush="#C0C0C0"
+                        BorderThickness="0,1,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Margin="4,0" Text="Measurement Running" />
+
+                            <Border
+                                Grid.Column="1"
+                                Background="{Binding MeasurementRunningColor}"
+                                BorderBrush="#808080"
+                                BorderThickness="1">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="{Binding MeasurementRunningTextColor}"
+                                    Text="{Binding MeasurementRunningText}" />
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!--  Measurement Finished  -->
+                    <Border
+                        Grid.Row="6"
+                        BorderBrush="#C0C0C0"
+                        BorderThickness="0,1,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Margin="4,0" Text="Measurement Finished" />
+
+                            <Border
+                                Grid.Column="1"
+                                Background="{Binding MeasurementFinishedColor}"
+                                BorderBrush="#808080"
+                                BorderThickness="1">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="{Binding MeasurementFinishedTextColor}"
+                                    Text="{Binding MeasurementFinishedText}" />
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!--  Result Good  -->
+                    <Border
+                        Grid.Row="7"
+                        BorderBrush="#C0C0C0"
+                        BorderThickness="0,1,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Margin="4,0" Text="Result - Good" />
+
+                            <Border
+                                Grid.Column="1"
+                                Background="{Binding ResultGoodColor}"
+                                BorderBrush="#808080"
+                                BorderThickness="1">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="{Binding ResultGoodTextColor}"
+                                    Text="{Binding ResultGoodText}" />
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!--  Result Warning  -->
+                    <Border
+                        Grid.Row="8"
+                        BorderBrush="#C0C0C0"
+                        BorderThickness="0,1,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Margin="4,0" Text="Result - Warning" />
+
+                            <Border
+                                Grid.Column="1"
+                                Background="{Binding ResultWarningColor}"
+                                BorderBrush="#808080"
+                                BorderThickness="1">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="{Binding ResultWarningTextColor}"
+                                    Text="{Binding ResultWarningText}" />
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!--  Result Bad  -->
+                    <Border
+                        Grid.Row="9"
+                        BorderBrush="#C0C0C0"
+                        BorderThickness="0,1,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Margin="4,0" Text="Result - Bad" />
+
+                            <Border
+                                Grid.Column="1"
+                                Background="{Binding ResultBadColor}"
+                                BorderBrush="#808080"
+                                BorderThickness="1">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="{Binding ResultBadTextColor}"
+                                    Text="{Binding ResultBadText}" />
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!--  Alive  -->
+                    <Border
+                        Grid.Row="10"
+                        BorderBrush="#C0C0C0"
+                        BorderThickness="0,1,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Margin="4,0" Text="Alive" />
+
+                            <Border
+                                Grid.Column="1"
+                                Background="{Binding AliveColor}"
+                                BorderBrush="#808080"
+                                BorderThickness="1">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="{Binding AliveTextColor}"
+                                    Text="{Binding AliveText}" />
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!--  Inspection Number  -->
+                    <Border
+                        Grid.Row="11"
+                        BorderBrush="#C0C0C0"
+                        BorderThickness="0,1,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Margin="4,0" Text="Inspection Number" />
+
+                            <Border
+                                Grid.Column="1"
+                                Background="{Binding InspectionNumberColor}"
+                                BorderBrush="#808080"
+                                BorderThickness="1">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="{Binding InspectionNumberTextColor}"
+                                    Text="{Binding InspectionNumberText}" />
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                </Grid>
+            </Border>
+
+        </Grid>
+    </Border>
+</UserControl>

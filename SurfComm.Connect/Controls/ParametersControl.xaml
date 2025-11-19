@@ -1,0 +1,105 @@
+﻿<UserControl
+    x:Class="SurfComm.Connect.Controls.ParametersControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Border
+        Margin="0,0,0,10"
+        Padding="12"
+        Background="White"
+        BorderBrush="#D0D0D0"
+        BorderThickness="1"
+        CornerRadius="4">
+
+        <Grid>
+            <!--  5 rows, one per parameter  -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!--  Two columns: Label | Input  -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <!--  label column  -->
+                <ColumnDefinition Width="*" />
+                <!--  input grows  -->
+            </Grid.ColumnDefinitions>
+
+            <!--  Parameter 1  -->
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="0,0,10,6"
+                VerticalAlignment="Center"
+                Text="Parameter 1" />
+            <TextBox
+                Grid.Row="0"
+                Grid.Column="1"
+                Height="28"
+                HorizontalAlignment="Stretch"
+                Text="{Binding Parameter1}" />
+
+            <!--  Parameter 2  -->
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="0,0,10,6"
+                VerticalAlignment="Center"
+                Text="Parameter 2" />
+            <TextBox
+                Grid.Row="1"
+                Grid.Column="1"
+                Height="28"
+                HorizontalAlignment="Stretch"
+                Text="{Binding Parameter2}" />
+
+            <!--  Parameter 3  -->
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="0"
+                Margin="0,0,10,6"
+                VerticalAlignment="Center"
+                Text="Parameter 3" />
+            <TextBox
+                Grid.Row="2"
+                Grid.Column="1"
+                Height="28"
+                HorizontalAlignment="Stretch"
+                Text="{Binding Parameter3}" />
+
+            <!--  Parameter 4  -->
+            <TextBlock
+                Grid.Row="3"
+                Grid.Column="0"
+                Margin="0,0,10,6"
+                VerticalAlignment="Center"
+                Text="Parameter 4" />
+            <TextBox
+                Grid.Row="3"
+                Grid.Column="1"
+                Height="28"
+                HorizontalAlignment="Stretch"
+                Text="{Binding Parameter4}" />
+
+            <!--  Parameter 5  -->
+            <TextBlock
+                Grid.Row="4"
+                Grid.Column="0"
+                Margin="0,0,10,0"
+                VerticalAlignment="Center"
+                Text="Parameter 5" />
+            <TextBox
+                Grid.Row="4"
+                Grid.Column="1"
+                Height="28"
+                HorizontalAlignment="Stretch"
+                Text="{Binding Parameter5}" />
+
+        </Grid>
+
+    </Border>
+</UserControl>

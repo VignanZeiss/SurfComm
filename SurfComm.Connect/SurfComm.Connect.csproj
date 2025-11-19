@@ -6,11 +6,53 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Assets\ProgramIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Model\" />
-    <Folder Include="View\" />
+    <Compile Remove="NewFolder\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
+    <None Remove="NewFolder\**" />
+    <Page Remove="NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\CZ-Logo.gif" />
+    <None Remove="Assets\CZ-Logo.png" />
+    <None Remove="Assets\HANDYSURF.jpg" />
+    <None Remove="Assets\HANDYSURF.png" />
+    <None Remove="Assets\Icon.png" />
+    <None Remove="Assets\ProgramIcon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\ProgramIcon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\CZ-Logo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SurfComm.Core\SurfComm.Core.csproj" />
+    <ProjectReference Include="..\SurfComm.Service\SurfComm.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\HANDYSURF.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\HANDYSURF.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\ProgramIcon.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

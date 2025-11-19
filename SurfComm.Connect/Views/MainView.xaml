@@ -1,0 +1,84 @@
+﻿<UserControl
+    x:Class="SurfComm.Connect.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:SurfComm.Connect.Controls">
+
+    <Grid Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!--  Inspection Info  -->
+            <RowDefinition Height="*" />
+            <!--  Parameters (scrollable)  -->
+            <RowDefinition Height="*" />
+            <!--  IO Panel (scrollable)  -->
+            <RowDefinition Height="*" />
+            <!--  Results (scrollable)  -->
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <!--  System Status  -->
+        </Grid.RowDefinitions>
+
+        <!--  1. Inspection Info (not scrollable)  -->
+        <controls:InspectionInfoControl
+            x:Name="InspectionInfoControl"
+            Grid.Row="0"
+            Margin="0,0,0,0" />
+
+        <!--  2. Parameters (Scrollable)  -->
+        <ScrollViewer
+            Grid.Row="1"
+            Margin="0,0,0,0"
+            HorizontalScrollBarVisibility="Disabled"
+            VerticalScrollBarVisibility="Auto">
+            <controls:ParametersControl x:Name="ParametersControl" />
+        </ScrollViewer>
+
+        <!--  3. IO Panel (Scrollable)  -->
+        <ScrollViewer
+            Grid.Row="2"
+            Margin="0,0,0,10"
+            HorizontalScrollBarVisibility="Disabled"
+            VerticalScrollBarVisibility="Auto">
+            <controls:IOStatusControl x:Name="IOStatusControl" />
+        </ScrollViewer>
+
+        <!--  4. Results Panel (Scrollable)  -->
+        <ScrollViewer
+            Grid.Row="3"
+            Margin="0,0,0,10"
+            HorizontalScrollBarVisibility="Disabled"
+            VerticalScrollBarVisibility="Auto">
+            <controls:ResultsControl x:Name="ResultsControl" />
+        </ScrollViewer>
+
+        <!--  5. System Status (not scrollable)  -->
+        
+            <Border
+                Grid.Row="4"
+                Height="35"
+                HorizontalAlignment="Stretch"
+                Background="#0A5C22">
+                <TextBlock
+                    Margin="10,0"
+                    VerticalAlignment="Center"
+                    Foreground="White"
+                    Text="SystemStatusControl will go here" />
+            
+            </Border>
+            <Border
+                Grid.Row="5"
+                Height="35"
+                HorizontalAlignment="Stretch"
+                Background="#0A5C22">
+                <TextBlock
+                    Margin="10,0"
+                    VerticalAlignment="Center"
+                    Foreground="White"
+                    Text="SystemStatusControl will go here" />
+
+            </Border>
+          
+    </Grid>
+</UserControl>
