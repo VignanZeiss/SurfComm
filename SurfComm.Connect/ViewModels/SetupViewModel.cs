@@ -44,7 +44,37 @@ namespace SurfComm.Connect.ViewModels
         }
         public SerialPortClass PortInfo { get; set; } = new();
 
-        
+        #region Automation / Ethernet IP Mapping
+        private bool _isAutomationEnabled;
+        public bool IsAutomationEnabled
+        {
+            get => _isAutomationEnabled;
+            set { _isAutomationEnabled = value; OnPropertyChanged(); }
+        }
+
+        private string _lcaIpAddress = "192.168.1.50";
+        public string LcaIpAddress
+        {
+            get => _lcaIpAddress;
+            set { _lcaIpAddress = value; OnPropertyChanged(); }
+        }
+
+        // Mapping: Which Result goes to which PLC Data Word?
+        private string _mapResult1 = "Ra"; // Maps to Word 2-3
+        public string MapResult1
+        {
+            get => _mapResult1;
+            set { _mapResult1 = value; OnPropertyChanged(); }
+        }
+
+        private string _mapResult2 = "Rz"; // Maps to Word 4-5
+        public string MapResult2
+        {
+            get => _mapResult2;
+            set { _mapResult2 = value; OnPropertyChanged(); }
+        }
+        #endregion
+
 
 
 

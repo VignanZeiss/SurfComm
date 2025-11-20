@@ -34,7 +34,7 @@ namespace SurfComm.Connect.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Could Not oad Program Files \n" + ex);
+                MessageBox.Show("Could Not Load Program Files \n" + ex);
             }
             
         }

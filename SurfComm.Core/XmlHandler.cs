@@ -49,7 +49,11 @@ namespace SurfComm.Core
                 if (data is T typed)
                     return typed;
             }
-            catch (Exception ex) { throw new Exception($"Error Loading XML: {ex.Message}", ex); }
+            catch (Exception ex)
+            {
+                //  Log if a specific file is corrupt so it doesn't crash the loop
+                System.Diagnostics.Debug.WriteLine($"Failed to load {fileName}: {ex.Message}");
+            }
 
 
             return null;

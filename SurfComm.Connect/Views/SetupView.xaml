@@ -12,181 +12,148 @@
     <Grid Margin="30">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <!--  Header  -->
-            <RowDefinition Height="Auto" />
-            <!--  Device section  -->
-            <RowDefinition Height="10" />
-            <!--  Spacer  -->
             <RowDefinition Height="*" />
-            <!--  Settings list  -->
             <RowDefinition Height="Auto" />
-            <!--  Buttons  -->
         </Grid.RowDefinitions>
 
-        <!--  Header  -->
-        <TextBlock
-            Margin="0,0,0,15"
-            HorizontalAlignment="Left"
-            FontSize="22"
-            FontWeight="SemiBold"
-            Foreground="#2B3E50"
-            Text="Device Setup" />
+        <TextBlock Grid.Row="0" Margin="0,0,0,15"
+                   Text="System Configuration"
+                   FontSize="22" FontWeight="SemiBold" Foreground="#2B3E50" />
 
-        <!--  Device Configuration Section  -->
-        <Border
-            Grid.Row="1"
-            Padding="15"
-            Background="White"
-            BorderBrush="#D0D4D8"
-            BorderThickness="1"
-            CornerRadius="8"
-            Effect="{DynamicResource MaterialDesignElevation2}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="250" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="150" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+        <TabControl Grid.Row="1" BorderThickness="0" Background="Transparent">
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="Padding" Value="15,10"/>
+                </Style>
+            </TabControl.Resources>
 
-                <!--  Device Name  -->
-                <TextBlock
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Margin="0,0,10,5"
-                    VerticalAlignment="Center"
-                    FontWeight="Bold"
-                    Text="Device Name:" />
-                <ComboBox
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Width="200"
-                    Margin="0,0,10,5"
-                    ItemsSource="{Binding AvailableDevices}"
-                    SelectedItem="{Binding DeviceConfig.DeviceName, Mode=TwoWay}" />
-                <Button
-                    Grid.Row="0"
-                    Grid.Column="2"
-                    Width="80"
-                    Command="{Binding TestDeviceCommand}"
-                    Content="Test" />
+            <TabItem Header="SurfComm Device">
+                <Grid Margin="0,10,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-                <!--  Connection status  -->
-                <TextBlock
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Margin="0,2,0,8"
-                    HorizontalAlignment="Left"
-                    FontStyle="Italic"
-                    Foreground="#007ACC"
-                    Text="{Binding ConnectionString}" />
+                    <Border Grid.Row="0" Padding="15" Background="White" BorderBrush="#D0D4D8" BorderThickness="1" CornerRadius="8" Margin="0,0,0,15">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="110" />
+                                <ColumnDefinition Width="250" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
-                <!--  Start Trigger  -->
-                <TextBlock
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Margin="0,0,10,0"
-                    VerticalAlignment="Center"
-                    FontWeight="Bold"
-                    Text="Start Trigger:" />
-                <ComboBox
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Width="200"
-                    ItemsSource="{Binding StartTriggerList}"
-                    SelectedItem="{Binding DeviceConfig.StartTrigger, Mode=TwoWay}" />
-                <ScrollViewer VerticalScrollBarVisibility="Auto" />
-            </Grid>
-        </Border>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Device Name:" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                            <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding AvailableDevices}" SelectedItem="{Binding DeviceConfig.DeviceName, Mode=TwoWay}" Margin="0,0,10,5"/>
+                            <Button Grid.Row="0" Grid.Column="2" Content="Test" Command="{Binding TestDeviceCommand}" Width="80" />
 
-        <!--  🟨 Category / Settings Section  -->
-        <Border
-            Grid.Row="3"
-            Margin="0,10,0,0"
-            Padding="15"
-            Background="White"
-            BorderBrush="#D0D4D8"
-            BorderThickness="1"
-            CornerRadius="8"
-            Effect="{DynamicResource MaterialDesignElevation1}">
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding Categories}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="0,10,0,10">
-                                <!--  Category header  -->
-                                <TextBlock
-                                    Margin="0,0,0,8"
-                                    FontSize="16"
-                                    FontWeight="SemiBold"
-                                    Foreground="#1C3D5A"
-                                    Text="{Binding Name}" />
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ConnectionString}" Foreground="#007ACC" FontStyle="Italic" Margin="0,2,0,8"/>
 
-                                <!--  Settings  -->
-                                <ItemsControl ItemsSource="{Binding Settings}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid Margin="0,2,0,5">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="220" />
-                                                    <ColumnDefinition Width="200" />
-                                                </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Start Trigger:" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                            <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding StartTriggerList}" SelectedItem="{Binding DeviceConfig.StartTrigger, Mode=TwoWay}" />
+                        </Grid>
+                    </Border>
 
-                                                <TextBlock
-                                                    Grid.Column="0"
-                                                    Margin="0,0,10,0"
-                                                    VerticalAlignment="Center"
-                                                    Text="{Binding Name}" />
-                                                <ComboBox
-                                                    Grid.Column="1"
-                                                    Width="160"
-                                                    DisplayMemberPath="Name"
-                                                    ItemsSource="{Binding Options}"
-                                                    SelectedItem="{Binding SelectedOption, Mode=TwoWay}" />
-                                            </Grid>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                                <Separator
-                                    Height="1"
-                                    Margin="0,5,0,5"
-                                    Background="#EEE" />
+                    <Border Grid.Row="1" Padding="15" Background="White" BorderBrush="#D0D4D8" BorderThickness="1" CornerRadius="8">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <ItemsControl ItemsSource="{Binding Categories}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Margin="0,10,0,10">
+                                            <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="SemiBold" Foreground="#1C3D5A" Margin="0,0,0,8"/>
+                                            <ItemsControl ItemsSource="{Binding Settings}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid Margin="0,2,0,5">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="220" />
+                                                                <ColumnDefinition Width="200" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <TextBlock Grid.Column="0" Text="{Binding Name}" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                                            <ComboBox Grid.Column="1" Width="160" DisplayMemberPath="Name" ItemsSource="{Binding Options}" SelectedItem="{Binding SelectedOption, Mode=TwoWay}" />
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                            <Separator Height="1" Background="#EEE" Margin="0,5,0,5"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Robot Integration (Ethernet/IP)">
+                <Border Background="White" CornerRadius="4" Padding="20" BorderBrush="#D0D4D8" BorderThickness="1" Margin="0,10,0,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="220"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="220"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Enable LCA Interface" IsChecked="{Binding IsAutomationEnabled}" FontSize="14" FontWeight="Bold" Margin="0,0,0,20"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="LCA Module IP:" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="1" Text="{Binding LcaIpAddress}" Width="150" HorizontalAlignment="Left" Margin="110,4,0,6" Grid.ColumnSpan="2"/>
+
+
+
+
+
+
+
+
+                        <Border  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Background="#FAFAFA" BorderBrush="#EEE" BorderThickness="2" Padding="10" Margin="10">
+                            <StackPanel>
+                                <TextBlock Text="Field Bus Stack Map" FontWeight="Bold" Foreground="#333" Margin="0,0,0,5" HorizontalAlignment="Center"/>
+                                <Separator Margin="0,0,0,10"/>
+
+                                <TextBlock Text="▼ INPUT (PLC -> PC)" FontSize="10" FontWeight="Bold" Foreground="#555"/>
+                                <TextBlock Text="Word 4: Insp. Number (DINT)" FontSize="11" Margin="0,2"/>
+                                <TextBlock Text="Word 5: Control Bits" FontSize="11" Margin="0,2"/>
+                                <TextBlock Text="  └ Bit 0: Start" FontSize="10" Foreground="Gray" Margin="10,0,0,0"/>
+                                <TextBlock Text="  └ Bit 1: Reset" FontSize="10" Foreground="Gray" Margin="10,0,0,0"/>
+
+                                <Separator Margin="0,10"/>
+
+                                <TextBlock Text="▲ OUTPUT (PC -> PLC)" FontSize="10" FontWeight="Bold" Foreground="#555"/>
+                                <TextBlock Text="Word 4: Echo Number (DINT)" FontSize="11" Margin="0,2"/>
+                                <TextBlock Text="Word 5: Status Bits" FontSize="11" Margin="0,2"/>
+                                <TextBlock Text="  └ Bit 0: Ready" FontSize="10" Foreground="Gray" Margin="10,0,0,0"/>
+                                <TextBlock Text="  └ Bit 1: Probe Conn." FontSize="10" Foreground="Gray" Margin="10,0,0,0"/>
+                                <TextBlock Text="  └ Bit 4: Running" FontSize="10" Foreground="Gray" Margin="10,0,0,0"/>
+                                <TextBlock Text="  └ Bit 5: Finished" FontSize="10" Foreground="Gray" Margin="10,0,0,0"/>
+
+                                <Rectangle Height="1" Fill="#EEE" Margin="0,5"/>
+
+
                             </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
-        </Border>
+                        </Border>
 
-        <!--  🟧 Action Buttons  -->
-        <StackPanel
-            Grid.Row="4"
-            Margin="0,15,0,0"
-            HorizontalAlignment="Right"
-            Orientation="Horizontal">
+                    </Grid>
+                </Border>
+            </TabItem>
+        </TabControl>
 
-            <Button
-                Width="100"
-                Height="32"
-                Background="#007ACC"
-                Command="{Binding ApplyToDevice}"
-                Content="Apply"
-                FontWeight="SemiBold"
-                Foreground="White" />
-            <Button
-                Width="100"
-                Height="32"
-                Background="#E1E5EA"
-                Command="{Binding SaveCommand}"
-                Content="Save"
-                FontWeight="SemiBold"
-                Foreground="#1C3D5A" />
+        <StackPanel Grid.Row="2" Margin="0,15,0,0" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Width="120" Height="32" Background="#007ACC" Command="{Binding ApplyToDevice}" Content="Apply" FontWeight="SemiBold" Foreground="White" Margin="0,0,10,0"/>
+            <Button Width="100" Height="32" Background="#E1E5EA" Command="{Binding SaveCommand}" Content="Save" FontWeight="SemiBold" Foreground="#1C3D5A" />
         </StackPanel>
     </Grid>
 </UserControl>

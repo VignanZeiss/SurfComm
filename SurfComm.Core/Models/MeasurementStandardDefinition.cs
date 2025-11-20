@@ -3,7 +3,8 @@ using System.Xml.Serialization;
 
 namespace SurfComm.Core.Models
 {
-    [XmlRoot("Standards")]
+    // FIX 1: Match the XML Root element "ParameterMappings"
+    [XmlRoot("ParameterMappings")]
     public class MeasurementStandardDefinition
     {
         [XmlElement("Standard")]
@@ -15,6 +16,7 @@ namespace SurfComm.Core.Models
         [XmlAttribute("name")]
         public string Name { get; set; } = "";
 
+        // Optional: The XML doesn't have a "code" attribute, but keeping this is fine (it will just be empty)
         [XmlAttribute("code")]
         public string Code { get; set; } = "";
 
@@ -27,7 +29,8 @@ namespace SurfComm.Core.Models
         [XmlAttribute("type")]
         public string Type { get; set; } = "";
 
-        [XmlElement("Parameter")]
+        // FIX 2: Match the XML child element "Param" instead of "Parameter"
+        [XmlElement("Param")]
         public List<MeasurementParameter> Parameters { get; set; } = new();
     }
 

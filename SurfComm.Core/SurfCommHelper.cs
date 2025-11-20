@@ -74,10 +74,12 @@ namespace SurfComm.Core
         {
             Global.ProgramsList.Clear();
 
-            if (!Directory.Exists(FilePath.ProgramsFolder))
-                Directory.CreateDirectory(FilePath.ProgramsFolder);
+            string path = Path.Combine(FilePath.DocumentsFolder,"Zeiss", "SurfComConnect", FilePath.ProgramsFolder);
 
-            var files = Directory.GetFiles(FilePath.ProgramsFolder, "*.xml");
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+
+            var files = Directory.GetFiles(path, "*.xml");
 
             foreach (var file in files)
             {

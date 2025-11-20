@@ -142,8 +142,9 @@
                     </MenuItem>
 
                     <MenuItem Header="_Settings" >
-                        <MenuItem Header="Device Setup" Command="{Binding ShowDeviceStepUpView}" Foreground="Black"/>
-                        <MenuItem Header="Program Mapping" Foreground="Black"/>
+                        <MenuItem Header="Device Setup" Command="{Binding OpenSetupCommand}" Foreground="Black"/>
+
+                        <MenuItem Header="Program Mapping" Command="{Binding OpenProgramMappingCommand}" Foreground="Black"/>
                     </MenuItem>
 
                     <MenuItem Header="_Diagnostics" >
