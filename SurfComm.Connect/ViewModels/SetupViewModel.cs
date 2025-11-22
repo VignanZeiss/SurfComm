@@ -1,14 +1,9 @@
-﻿using SurfComm.Connect.Models;
+﻿using SurfComm.Core.Models;
 using SurfComm.Core;
-using SurfComm.Service;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Threading;
 using System.Windows;
 using System.Windows.Input;
-using System.Xml.Serialization;
+
 
 namespace SurfComm.Connect.ViewModels 
 {
