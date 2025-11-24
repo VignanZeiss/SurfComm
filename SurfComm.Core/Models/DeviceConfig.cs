@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace SurfComm.Connect.Models
+namespace SurfComm.Core.Models
 {
     [XmlRoot("DeviceConfig")]
     public class DeviceConfig
