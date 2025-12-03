@@ -10,13 +10,23 @@
     mc:Ignorable="d">
 
     <Grid Margin="30">
+
+        <!-- ADDED ONE MORE ROW FOR THE PARAMETER TABLE -->
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <!-- Program Title -->
+            <RowDefinition Height="Auto"/>
+            <!-- Program Info Panel -->
+            <RowDefinition Height="Auto"/>
+            <!-- Measurement Settings -->
+            <RowDefinition Height="*"/>
+            <!-- Parameter Table -->
+            <RowDefinition Height="Auto"/>
+            <!-- Buttons -->
         </Grid.RowDefinitions>
 
+
+        <!-- PROGRAM TITLE -->
         <TextBlock
             Grid.Row="0"
             Margin="0,0,0,20"
@@ -25,6 +35,8 @@
             Foreground="#333333"
             Text="Program Editor" />
 
+
+        <!-- PROGRAM INFO PANEL -->
         <Border
             Grid.Row="1"
             Margin="0,0,0,15"
@@ -33,159 +45,228 @@
             BorderBrush="#E0E0E0"
             BorderThickness="1"
             CornerRadius="4">
+
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="120" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
+
 
                 <TextBlock
                     Grid.Row="0"
                     Grid.Column="0"
                     VerticalAlignment="Center"
                     FontWeight="Bold"
-                    Text="Program Name:" />
+                    Text="Program Name:"/>
                 <TextBox
                     Grid.Row="0"
                     Grid.Column="1"
                     Margin="0,0,0,10"
                     Padding="4"
-                    Text="{Binding Program.Info.Name}" />
+                    Text="{Binding Program.Info.Name}"/>
+
 
                 <TextBlock
                     Grid.Row="1"
                     Grid.Column="0"
                     VerticalAlignment="Center"
                     FontWeight="Bold"
-                    Text="Description:" />
+                    Text="Description:"/>
                 <TextBox
                     Grid.Row="1"
                     Grid.Column="1"
                     Padding="4"
-                    Text="{Binding Program.Info.Description}" />
+                    Text="{Binding Program.Info.Description}"/>
+
             </Grid>
         </Border>
 
+
+
+        <!-- MEASUREMENT SETTINGS -->
         <GroupBox
             Grid.Row="2"
             Padding="10"
             BorderBrush="#D0D0D0"
             Header="Measurement Settings">
+
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <Grid Margin="5">
+
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="140" />
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="40" />
-                        <ColumnDefinition Width="140" />
-                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="200"/>
                     </Grid.ColumnDefinitions>
+
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="35" />
-                        <RowDefinition Height="35" />
-                        <RowDefinition Height="35" />
-                        <RowDefinition Height="35" />
-                        <RowDefinition Height="35" />
-                        <RowDefinition Height="35" />
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
                     </Grid.RowDefinitions>
 
+
+                    <!-- CALCULATION STANDARD -->
                     <TextBlock
                         Grid.Row="0"
                         Grid.Column="0"
                         VerticalAlignment="Center"
-                        Text="Standard:" />
+                        Text="Standard:"/>
                     <ComboBox
                         Grid.Row="0"
                         Grid.Column="1"
                         ItemsSource="{Binding StandardsList}"
-                        SelectedItem="{Binding Program.Settings.CalculationStandard}" />
+                        SelectedItem="{Binding SelectedStandard, Mode=TwoWay}"/>
 
+
+                    <!-- MEASUREMENT TYPE -->
                     <TextBlock
                         Grid.Row="1"
                         Grid.Column="0"
                         VerticalAlignment="Center"
-                        Text="Meas. Type:" />
+                        Text="Meas. Type:"/>
                     <ComboBox
                         Grid.Row="1"
                         Grid.Column="1"
                         ItemsSource="{Binding MeasurementTypeList}"
-                        SelectedItem="{Binding Program.Settings.MeasurementType}" />
+                        SelectedItem="{Binding SelectedMeasurementType, Mode=TwoWay}"/>
 
+
+                    <!-- FORM REMOVAL -->
                     <TextBlock
                         Grid.Row="2"
                         Grid.Column="0"
                         VerticalAlignment="Center"
-                        Text="Form Removal:" />
+                        Text="Form Removal:"/>
                     <ComboBox
                         Grid.Row="2"
                         Grid.Column="1"
                         ItemsSource="{Binding FormRemovalList}"
-                        SelectedItem="{Binding Program.Settings.FormRemoval}" />
+                        SelectedItem="{Binding Program.Settings.FormRemoval}"/>
 
+
+                    <!-- EVALUATION LENGTH -->
                     <TextBlock
                         Grid.Row="3"
                         Grid.Column="0"
                         VerticalAlignment="Center"
-                        Text="Eval Length:" />
+                        Text="Eval Length:"/>
                     <TextBox
                         Grid.Row="3"
                         Grid.Column="1"
                         VerticalContentAlignment="Center"
-                        Text="{Binding Program.Settings.EvaluationLength}" />
+                        Text="{Binding Program.Settings.EvaluationLength}"/>
 
+
+
+                    <!-- RIGHT SIDE SETTINGS -->
+
+                    <!-- FILTER TYPE -->
                     <TextBlock
                         Grid.Row="0"
                         Grid.Column="3"
                         VerticalAlignment="Center"
-                        Text="Filter Type:" />
+                        Text="Filter Type:"/>
                     <ComboBox
                         Grid.Row="0"
                         Grid.Column="4"
                         ItemsSource="{Binding FilterList}"
-                        SelectedItem="{Binding Program.Settings.FilterType}" />
+                        SelectedItem="{Binding Program.Settings.FilterType}"/>
 
+
+                    <!-- CUTOFF LC -->
                     <TextBlock
                         Grid.Row="1"
                         Grid.Column="3"
                         VerticalAlignment="Center"
-                        Text="Cutoff (λc):" />
+                        Text="Cutoff (λc):"/>
                     <ComboBox
                         Grid.Row="1"
                         Grid.Column="4"
                         ItemsSource="{Binding LambdaCList}"
-                        SelectedItem="{Binding Program.Settings.Cutoff_lc}" />
+                        SelectedItem="{Binding Program.Settings.Cutoff_lc}"/>
 
+
+                    <!-- CUTOFF LS -->
                     <TextBlock
                         Grid.Row="2"
                         Grid.Column="3"
                         VerticalAlignment="Center"
-                        Text="Cutoff (λs):" />
+                        Text="Cutoff (λs):"/>
                     <ComboBox
                         Grid.Row="2"
                         Grid.Column="4"
                         ItemsSource="{Binding LambdaSList}"
-                        SelectedItem="{Binding Program.Settings.Cutoff_ls}" />
+                        SelectedItem="{Binding Program.Settings.Cutoff_ls}"/>
 
+
+                    <!-- CUTOFF LF -->
                     <TextBlock
                         Grid.Row="3"
                         Grid.Column="3"
                         VerticalAlignment="Center"
-                        Text="Cutoff (λf):" />
+                        Text="Cutoff (λf):"/>
                     <ComboBox
                         Grid.Row="3"
                         Grid.Column="4"
                         ItemsSource="{Binding LambdaFList}"
-                        SelectedItem="{Binding Program.Settings.Cutoff_lf}" />
+                        SelectedItem="{Binding Program.Settings.Cutoff_lf}"/>
+
                 </Grid>
             </ScrollViewer>
         </GroupBox>
 
-        <StackPanel
+
+
+
+        <!-- INLINE PARAMETER TABLE -->
+        <DataGrid
             Grid.Row="3"
+            AutoGenerateColumns="False"
+            ItemsSource="{Binding AvailableParameterRows}"
+            CanUserAddRows="False"
+            Margin="0,10,0,10">
+
+            <DataGrid.Columns>
+
+                <DataGridCheckBoxColumn Header="Select"
+                                        Binding="{Binding IsSelected}"/>
+
+                <DataGridTextColumn Header="Parameter"
+                                    Binding="{Binding Name}"
+                                    IsReadOnly="True"/>
+
+                <DataGridTextColumn Header="Min"
+                                    Binding="{Binding Min, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <DataGridTextColumn Header="Max"
+                                    Binding="{Binding Max, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <DataGridTextColumn Header="Default"
+                                    Binding="{Binding Default, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+
+
+
+
+        <!-- BUTTONS -->
+        <StackPanel
+            Grid.Row="4"
             Margin="0,20,0,0"
             HorizontalAlignment="Right"
             Orientation="Horizontal">
@@ -193,9 +274,8 @@
             <Button
                 Width="160"
                 Height="35"
-                Margin="0,0,15,0"
                 Command="{Binding OpenParameterPopupCommand}"
-                Content="Select Parameters..." />
+                Content="Load Parameters" />
 
             <Button
                 Width="140"
@@ -204,7 +284,9 @@
                 Command="{Binding SaveProgramCommand}"
                 Content="Save Program"
                 FontWeight="SemiBold"
-                Foreground="White" />
+                Foreground="White"/>
+
         </StackPanel>
+
     </Grid>
 </UserControl>

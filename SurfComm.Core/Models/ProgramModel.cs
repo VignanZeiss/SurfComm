@@ -54,26 +54,5 @@ namespace SurfComm.Core.Models
     }
 
 
-    public class ProgramParameter
-    {
-        [XmlAttribute("name")]
-        public string Name { get; set; } = "";
-
-        [XmlAttribute("id")]
-        public int Id { get; set; }
-
-        [XmlElement("Min")]
-        public double? Min { get; set; }
-
-        [XmlElement("Max")]
-        public double? Max { get; set; }
-
-        [XmlElement("Unit")]
-        public string Unit { get; set; } = "µm"; // default
-
-        // UI-only (not serialized)
-        [XmlIgnore]
-        public string Display =>
-            $"{Name} ({Min?.ToString() ?? "-"}–{Max?.ToString() ?? "-"})";
-    }
+   
 }

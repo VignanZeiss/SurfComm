@@ -1,6 +1,5 @@
 ﻿using SurfComm.Core;
 using SurfComm.Core.Models;
-
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -16,6 +15,42 @@ namespace SurfComm.Connect.ViewModels
         public ProgramDefinition ProgramDef { get; private set; }
         public MeasurementStandardDefinition MeasureDef { get; private set; }
 
+        private string _selectedStandard;
+        public string SelectedStandard
+        {
+            get => _selectedStandard;
+            set
+            {
+                _selectedStandard = value;
+
+                // If Program.Settings has a CalculationStandard property, keep it in sync
+                if (Program?.Settings != null)
+                {
+                    Program.Settings.CalculationStandard = value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private string _selectedMeasurementType;
+        public string SelectedMeasurementType
+        {
+            get => _selectedMeasurementType;
+            set
+            {
+                _selectedMeasurementType = value;
+
+                // If Program.Settings has MeasurementType, sync it too
+                if (Program?.Settings != null)
+                {
+                    Program.Settings.MeasurementType = value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
         public ProgramModel Program { get; set; }
 
         // DROPDOWN LISTS
@@ -27,8 +62,11 @@ namespace SurfComm.Connect.ViewModels
         public ObservableCollection<string> LambdaSList { get; set; } = new();
         public ObservableCollection<string> LambdaFList { get; set; } = new();
 
-        // FOR PARAMETER POPUP
-        public ICommand OpenParameterPopupCommand { get; }
+        // INLINE PARAMETER TABLE
+        public ObservableCollection<ParameterRow> AvailableParameterRows { get; } = new();
+
+        // COMMANDS
+        public ICommand OpenParameterPopupCommand { get; }   // now: "Load parameters into table"
         public ICommand SaveProgramCommand { get; }
 
         public ProgramCreationViewModel(ProgramModel program)
@@ -38,8 +76,16 @@ namespace SurfComm.Connect.ViewModels
             LoadDefinitions();
             PopulateDropdowns();
 
-            OpenParameterPopupCommand = new RelayCommand(_ => OpenParameterPopup());
+            // Reuse this command: now it loads parameter rows instead of opening a popup
+            OpenParameterPopupCommand = new RelayCommand(_ => LoadAvailableParameters());
             SaveProgramCommand = new RelayCommand(_ => SaveProgram());
+
+            // Optional: if Program already has settings, pre-select dropdowns
+            if (!string.IsNullOrWhiteSpace(Program?.Settings?.CalculationStandard))
+                SelectedStandard = Program.Settings.CalculationStandard;
+
+            if (!string.IsNullOrWhiteSpace(Program?.Settings?.MeasurementType))
+                SelectedMeasurementType = Program.Settings.MeasurementType;
         }
 
         public ProgramCreationViewModel()
@@ -103,22 +149,79 @@ namespace SurfComm.Connect.ViewModels
             }
         }
 
-        private void OpenParameterPopup()
+        /// <summary>
+        /// Previously: OpenParameterPopup()
+        /// Now: load available parameters into an inline table.
+        /// </summary>
+        private void LoadAvailableParameters()
         {
-            // TODO: Create popup later
-            MessageBox.Show("Parameter Popup not yet implemented.");
+            if (string.IsNullOrWhiteSpace(SelectedStandard))
+            {
+                MessageBox.Show("Please select a Calculation Standard first.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(SelectedMeasurementType))
+            {
+                MessageBox.Show("Please select a Measurement Type first.");
+                return;
+            }
+
+            AvailableParameterRows.Clear();
+
+            // Find the selected standard in MeasurementStandardDefinition
+            var std = MeasureDef.Standards
+                .FirstOrDefault(s => s.Name == SelectedStandard);
+
+            if (std == null)
+            {
+                MessageBox.Show($"Standard '{SelectedStandard}' not found in MeasurementStandardDefinition.");
+                return;
+            }
+
+            // Find the profile corresponding to the selected measurement type
+            var profile = std.Profiles
+                .FirstOrDefault(p => p.Type == SelectedMeasurementType);
+
+            if (profile == null)
+            {
+                MessageBox.Show($"Measurement Type '{SelectedMeasurementType}' not defined for standard '{SelectedStandard}'.");
+                return;
+            }
+
+            // profile.Param is List<MeasurementParameter>
+            foreach (var p in profile.Param)
+            {
+                AvailableParameterRows.Add(new ParameterRow
+                {
+                    Name = p.Name,
+                    Id = p.Id,
+                    IsSelected = false
+                    // Min/Max/Default remain null and can be edited in the grid
+                });
+            }
         }
 
         private void SaveProgram()
         {
+            // Map selected rows from UI -> Program.Parameters
+            Program.Parameters = AvailableParameterRows
+                .Where(r => r.IsSelected)
+                .Select(r => new ProgramParameter
+                {
+                    Name = r.Name,
+                    Id = r.Id
+                    // Extend ProgramParameter later for Min/Max/Default if needed
+                })
+                .ToList();
+
             // Build the parameter display text
             Program.ParameterListDisplay =
                 string.Join(", ", Program.Parameters.Select(p => p.Display));
 
             // Save file
             string filePath = System.IO.Path.Combine(FilePath.ProgramsFolder, $"Program{Program.Id}.xml");
-
-            XmlHandler.SaveToXml<ProgramModel>( Program,filePath);
+            XmlHandler.SaveToXml(Program, filePath);
 
             // Update global program list after saving
             SurfCommHelper.UpdateGlobalProgramList();

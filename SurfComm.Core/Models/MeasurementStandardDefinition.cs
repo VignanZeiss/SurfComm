@@ -31,7 +31,7 @@ namespace SurfComm.Core.Models
 
         // FIX 2: Match the XML child element "Param" instead of "Parameter"
         [XmlElement("Param")]
-        public List<MeasurementParameter> Parameters { get; set; } = new();
+        public List<MeasurementParameter> Param { get; set; } = new();
     }
 
     public class MeasurementParameter
